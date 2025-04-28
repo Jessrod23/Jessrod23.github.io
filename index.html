@@ -2,125 +2,155 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Encuesta de Redes Sociales</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <title>Encuesta Redes Sociales</title>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
   <style>
-    body { font-family: 'Poppins', sans-serif; background: #f2f2f2; margin: 0; padding: 0; }
-    .container { max-width: 600px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    h1 { text-align: center; color: #333; }
-    form p { margin-bottom: 15px; color: #555; }
-    select, button { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 8px; }
-    button { background-color: #4CAF50; color: white; border: none; cursor: pointer; margin-top: 20px; font-size: 16px; }
+    body { font-family: 'Poppins', sans-serif; background: #e3f2fd; margin: 0; padding: 0; }
+    .container { max-width: 800px; margin: 50px auto; background: white; padding: 30px; border-radius: 15px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1 { text-align: center; color: #333; margin-bottom: 30px; }
+    .question { margin-bottom: 20px; }
+    label { display: block; margin-bottom: 5px; color: #555; }
+    select, button { width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #ccc; }
+    button { background-color: #4CAF50; color: white; font-weight: bold; cursor: pointer; margin-top: 20px; }
     button:hover { background-color: #45a049; }
-    .link { text-align: center; margin-top: 20px; }
-    .link a { color: #4CAF50; text-decoration: none; font-weight: bold; }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Encuesta de Redes Sociales</h1>
     <form id="surveyForm">
-      <p>1. ¿Cuál red social usas más?
+
+      <div class="question">
+        <label>¿Qué red social usas más?</label>
         <select name="favoriteApp">
           <option>Facebook</option>
           <option>Instagram</option>
-          <option>WhatsApp</option>
           <option>TikTok</option>
-          <option>Twitter/X</option>
+          <option>Twitter</option>
+          <option>Snapchat</option>
         </select>
-      </p>
-      <p>2. ¿Cuántas horas al día usas redes sociales?
+      </div>
+
+      <div class="question">
+        <label>¿Cuántas horas al día usas redes sociales?</label>
         <select name="hours">
           <option>Menos de 1 hora</option>
-          <option>1-2 horas</option>
-          <option>3-4 horas</option>
-          <option>Más de 4 horas</option>
+          <option>1-3 horas</option>
+          <option>3-5 horas</option>
+          <option>Más de 5 horas</option>
         </select>
-      </p>
-      <p>3. ¿Qué tipo de contenido prefieres?
+      </div>
+
+      <div class="question">
+        <label>¿Qué tipo de contenido prefieres?</label>
         <select name="content">
+          <option>Memes</option>
+          <option>Noticias</option>
           <option>Videos</option>
           <option>Fotos</option>
-          <option>Texto</option>
-          <option>Noticias</option>
         </select>
-      </p>
-      <p>4. ¿Usas redes para informarte de noticias?
+      </div>
+
+      <div class="question">
+        <label>¿Usas redes para informarte de noticias?</label>
         <select name="news">
           <option>Sí</option>
           <option>No</option>
         </select>
-      </p>
-      <p>5. ¿Prefieres chatear o ver publicaciones?
+      </div>
+
+      <div class="question">
+        <label>¿Prefieres chatear o ver publicaciones?</label>
         <select name="preference">
           <option>Chatear</option>
           <option>Ver publicaciones</option>
         </select>
-      </p>
-      <p>6. ¿Qué app de mensajería usas más?
+      </div>
+
+      <div class="question">
+        <label>¿Qué app de mensajería usas más?</label>
         <select name="messaging">
           <option>WhatsApp</option>
           <option>Messenger</option>
           <option>Telegram</option>
-          <option>Otro</option>
+          <option>Otra</option>
         </select>
-      </p>
-      <p>7. ¿Cuántas redes sociales tienes instaladas?
+      </div>
+
+      <div class="question">
+        <label>¿Cuántas redes sociales tienes instaladas?</label>
         <select name="appsInstalled">
           <option>1-2</option>
           <option>3-4</option>
           <option>5 o más</option>
         </select>
-      </p>
-      <p>8. ¿Cuál consideras más adictiva?
+      </div>
+
+      <div class="question">
+        <label>¿Cuál consideras más adictiva?</label>
         <select name="addictive">
           <option>Facebook</option>
           <option>Instagram</option>
           <option>TikTok</option>
-          <option>Otra</option>
+          <option>Twitter</option>
         </select>
-      </p>
-      <p>9. ¿Publicas contenido propio?
+      </div>
+
+      <div class="question">
+        <label>¿Publicas contenido propio?</label>
         <select name="publish">
-          <option>Sí, seguido</option>
-          <option>Algunas veces</option>
-          <option>Muy rara vez</option>
-          <option>Nunca</option>
+          <option>Sí</option>
+          <option>No</option>
         </select>
-      </p>
-      <p>10. ¿Qué tan importante son para ti las redes sociales?
+      </div>
+
+      <div class="question">
+        <label>¿Qué tan importantes son para ti las redes sociales?</label>
         <select name="importance">
           <option>Muy importantes</option>
           <option>Importantes</option>
+          <option>Algo importantes</option>
           <option>Poco importantes</option>
-          <option>Innecesarias</option>
         </select>
-      </p>
-      <button type="submit">Enviar encuesta</button>
+      </div>
+
+      <button type="submit">Enviar</button>
     </form>
-    <div class="link">
-      <a href="estadisticas.html">Ver estadísticas</a>
-    </div>
   </div>
 
   <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBWQZQhNk8Sb9QRwagIPEJ7GhLg-p0_IVo",
+      authDomain: "jess-d0e64.firebaseapp.com",
+      databaseURL: "https://jess-d0e64-default-rtdb.firebaseio.com",
+      projectId: "jess-d0e64",
+      storageBucket: "jess-d0e64.appspot.com",
+      messagingSenderId: "1077483205609",
+      appId: "1:1077483205609:web:0cc8729bad381958961178",
+      measurementId: "G-6JYXZM80V4"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const db = firebase.database();
+
     document.getElementById('surveyForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
-      const formData = new FormData(e.target);
-      const newEntry = {};
+      const data = {};
+      const formData = new FormData(this);
+      formData.forEach((value, key) => data[key] = value);
 
-      formData.forEach((value, key) => {
-        newEntry[key] = value;
-      });
-
-      let surveys = JSON.parse(localStorage.getItem('surveys')) || [];
-      surveys.push(newEntry);
-      localStorage.setItem('surveys', JSON.stringify(surveys));
-
-      alert('¡Gracias por completar la encuesta!');
-      e.target.reset();
+      db.ref('surveys').push(data)
+        .then(() => {
+          alert('Encuesta enviada correctamente!');
+          window.location.href = 'index.html'; // Cambia al archivo de resultados
+        })
+        .catch(error => {
+          console.error('Error al guardar en Firebase:', error);
+        });
     });
   </script>
 </body>
 </html>
+
